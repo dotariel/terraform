@@ -236,6 +236,12 @@
 			"versionExact": "v1.8.34"
 		},
 		{
+			"path": "github.com/aws/aws-sdk-go/aws/arn",
+			"revision": "be4fa13e47938e4801fada8c8ca3d1867ad3dcb3",
+			"version": "v1.8.34",
+			"versionExact": "v1.8.34"
+		},
+		{
 			"checksumSHA1": "Y9W+4GimK4Fuxq+vyIskVYFRnX4=",
 			"path": "github.com/aws/aws-sdk-go/aws/awserr",
 			"revision": "be4fa13e47938e4801fada8c8ca3d1867ad3dcb3",
@@ -730,6 +736,12 @@
 			"revisionTime": "2017-06-02T18:54:01Z",
 			"version": "v1.8.34",
 			"versionExact": "v1.8.34"
+		},
+		{
+			"checksumSHA1": "D92k3ymegRbjpgnuAy9rWjgV7vs=",
+			"path": "github.com/aws/aws-sdk-go/service/iot",
+			"revision": "ef87157887228a0b98102ace872cd999518453fb",
+			"revisionTime": "2017-08-30T19:40:47Z"
 		},
 		{
 			"checksumSHA1": "KJuPA/SLv0fLME23SmxVP4410BE=",
@@ -1842,10 +1854,10 @@
 			"revisionTime": "2016-09-27T10:08:44Z"
 		},
 		{
-			"checksumSHA1": "FcJRecfBai4J9kGW+iUnJYNUXzU=",
+			"checksumSHA1": "qVZe6xBSf7Li1pSXDjT1i1Au0N8=",
 			"path": "github.com/terraform-providers/terraform-provider-aws/aws",
-			"revision": "3e47e77ac7e5e457b606b0f861816bcd3e2ceb4e",
-			"revisionTime": "2017-06-12T09:08:25Z"
+			"revision": "928d6f80b0d215e8e69d1f5796ea3920941f7b75",
+			"revisionTime": "2017-08-31T21:12:08Z"
 		},
 		{
 			"checksumSHA1": "7WDq0VsOJmABPUCEvfuerEp7mBg=",
