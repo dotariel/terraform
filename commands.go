@@ -34,6 +34,7 @@ func initCommands(config *Config) {
 		GlobalPluginDirs: globalPluginDirs(),
 		PluginOverrides:  &PluginOverrides,
 		Ui:               Ui,
+		PluginCacheDir:   config.PluginCacheDir,
 	}
 
 	// The command list is included in the terraform -help
