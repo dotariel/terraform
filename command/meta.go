@@ -42,6 +42,10 @@ type Meta struct {
 	// ExtraHooks are extra hooks to add to the context.
 	ExtraHooks []terraform.Hook
 
+	// PluginCacheDir, if non-empty, enables caching of downloaded plugins
+	// into the given directory.
+	PluginCacheDir string
+
 	//----------------------------------------------------------
 	// Protected: commands can set these
 	//----------------------------------------------------------
