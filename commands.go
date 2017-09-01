@@ -20,7 +20,7 @@ const (
 	OutputPrefix = "o:"
 )
 
-func init() {
+func initCommands(config *Config) {
 	Ui = &cli.PrefixedUi{
 		AskPrefix:    OutputPrefix,
 		OutputPrefix: OutputPrefix,

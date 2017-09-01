@@ -127,6 +127,11 @@ func wrappedMain() int {
 		config = *config.Merge(usrcfg)
 	}
 
+	// In tests, Commands may already be set to provide mock commands
+	if Commands == nil {
+		initCommands(&config)
+	}
+
 	// Run checkpoint
 	go runCheckpoint(&config)
 
