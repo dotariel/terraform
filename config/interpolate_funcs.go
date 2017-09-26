@@ -58,6 +58,7 @@ func listVariableValueToStringSlice(values []ast.Variable) ([]string, error) {
 // Funcs is the mapping of built-in functions for configuration.
 func Funcs() map[string]ast.Function {
 	return map[string]ast.Function{
+		"abs":          interpolationFuncAbs(),
 		"basename":     interpolationFuncBasename(),
 		"base64decode": interpolationFuncBase64Decode(),
 		"base64encode": interpolationFuncBase64Encode(),
@@ -84,6 +85,7 @@ func Funcs() map[string]ast.Function {
 		"floor":        interpolationFuncFloor(),
 		"format":       interpolationFuncFormat(),
 		"formatlist":   interpolationFuncFormatList(),
+		"indent":       interpolationFuncIndent(),
 		"index":        interpolationFuncIndex(),
 		"join":         interpolationFuncJoin(),
 		"jsonencode":   interpolationFuncJSONEncode(),
@@ -672,6 +674,21 @@ func interpolationFuncFormatList() ast.Function {
 				list[i] = fmt.Sprintf(format, fmtargs...)
 			}
 			return stringSliceToVariableValue(list), nil
+		},
+	}
+}
+
+// interpolationFuncIndent indents a multi-line string with the
+// specified number of spaces
+func interpolationFuncIndent() ast.Function {
+	return ast.Function{
+		ArgTypes:   []ast.Type{ast.TypeInt, ast.TypeString},
+		ReturnType: ast.TypeString,
+		Callback: func(args []interface{}) (interface{}, error) {
+			spaces := args[0].(int)
+			data := args[1].(string)
+			pad := strings.Repeat(" ", spaces)
+			return strings.Replace(data, "\n", "\n"+pad, -1), nil
 		},
 	}
 }
@@ -1572,6 +1589,17 @@ func interpolationFuncTranspose() ast.Function {
 				outputMap[outKey] = ast.Variable{Type: ast.TypeList, Value: values}
 			}
 			return outputMap, nil
+		},
+	}
+}
+
+// interpolationFuncAbs returns the absolute value of a given float.
+func interpolationFuncAbs() ast.Function {
+	return ast.Function{
+		ArgTypes:   []ast.Type{ast.TypeFloat},
+		ReturnType: ast.TypeFloat,
+		Callback: func(args []interface{}) (interface{}, error) {
+			return math.Abs(args[0].(float64)), nil
 		},
 	}
 }

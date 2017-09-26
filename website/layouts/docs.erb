@@ -510,6 +510,10 @@
             <a href="/docs/modules/sources.html">Sources</a>
           </li>
 
+          <li<%= sidebar_current("docs-registry") %>>
+            <a href="/docs/registry/index.html">Registry</a>
+          </li>
+
           <li<%= sidebar_current("docs-modules-create") %>>
             <a href="/docs/modules/create.html">Creating Modules</a>
           </li>
@@ -581,11 +585,14 @@
 
       <hr>
 
-      <li<%= sidebar_current("docs-enterprise") %>>
-        <a href="/docs/enterprise/index.html">Terraform Enterprise</a>
-        <ul class="nav">
-        </ul>
+      <li<%= sidebar_current("docs-enterprise-home") %>>
+        <a class="back" href="/docs/enterprise/index.html">Terraform Enterprise (classic)</a>
       </li>
+
+      <li<%= sidebar_current("docs-enterprise2-home") %>>
+        <a class="back" href="/docs/enterprise-beta/index.html">Terraform Enterprise (beta)</a>
+      </li>
+
     </ul>
   <% end %>
 

@@ -1354,6 +1354,34 @@ func TestInterpolateFuncIndex(t *testing.T) {
 	})
 }
 
+func TestInterpolateFuncIndent(t *testing.T) {
+	testFunction(t, testFunctionConfig{
+		Cases: []testFunctionCase{
+			{
+				`${indent(4, "Fleas:
+Adam
+Had'em
+
+E.E. Cummings")}`,
+				"Fleas:\n    Adam\n    Had'em\n    \n    E.E. Cummings",
+				false,
+			},
+			{
+				`${indent(4, "oneliner")}`,
+				"oneliner",
+				false,
+			},
+			{
+				`${indent(4, "#!/usr/bin/env bash
+date
+pwd")}`,
+				"#!/usr/bin/env bash\n    date\n    pwd",
+				false,
+			},
+		},
+	})
+}
+
 func TestInterpolateFuncJoin(t *testing.T) {
 	testFunction(t, testFunctionConfig{
 		Vars: map[string]ast.Variable{
@@ -2642,6 +2670,58 @@ func TestInterpolateFuncTranspose(t *testing.T) {
 				`${transpose(var.badmap)}`,
 				nil,
 				true,
+			},
+		},
+	})
+}
+
+func TestInterpolateFuncAbs(t *testing.T) {
+	testFunction(t, testFunctionConfig{
+		Cases: []testFunctionCase{
+			{
+				`${abs()}`,
+				nil,
+				true,
+			},
+			{
+				`${abs("")}`,
+				nil,
+				true,
+			},
+			{
+				`${abs(0)}`,
+				"0",
+				false,
+			},
+			{
+				`${abs(1)}`,
+				"1",
+				false,
+			},
+			{
+				`${abs(-1)}`,
+				"1",
+				false,
+			},
+			{
+				`${abs(1.0)}`,
+				"1",
+				false,
+			},
+			{
+				`${abs(-1.0)}`,
+				"1",
+				false,
+			},
+			{
+				`${abs(-3.14)}`,
+				"3.14",
+				false,
+			},
+			{
+				`${abs(-42.001)}`,
+				"42.001",
+				false,
 			},
 		},
 	})
