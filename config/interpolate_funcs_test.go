@@ -2657,6 +2657,14 @@ func TestInterpolateFuncTranspose(t *testing.T) {
 						},
 					},
 				}},
+			"var.worsemap": ast.Variable{
+				Type: ast.TypeMap,
+				Value: map[string]ast.Variable{
+					"key1": ast.Variable{
+						Type:  ast.TypeString,
+						Value: "not-a-list",
+					},
+				}},
 		},
 		Cases: []testFunctionCase{
 			{
@@ -2670,6 +2678,11 @@ func TestInterpolateFuncTranspose(t *testing.T) {
 			},
 			{
 				`${transpose(var.badmap)}`,
+				nil,
+				true,
+			},
+			{
+				`${transpose(var.worsemap)}`,
 				nil,
 				true,
 			},

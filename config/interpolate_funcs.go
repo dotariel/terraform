@@ -1565,10 +1565,13 @@ func interpolationFuncTranspose() ast.Function {
 			tmpMap := make(map[string][]string)
 
 			for inKey, inVal := range inputMap {
+				if inVal.Type != ast.TypeList {
+					return nil, fmt.Errorf("transpose requires a map of lists of strings")
+				}
 				values := inVal.Value.([]ast.Variable)
 				for _, listVal := range values {
 					if listVal.Type != ast.TypeString {
-						return nil, fmt.Errorf("lists of (%s) are not supported", listVal.Type.Printable())
+						return nil, fmt.Errorf("transpose requires the given map values to be lists of strings")
 					}
 					outKey := listVal.Value.(string)
 					if _, ok := tmpMap[outKey]; !ok {
